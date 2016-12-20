@@ -5,7 +5,7 @@ def change_to_decimal(n) :
     mark = number.index('/')
     son_ = ''.join(number[:mark])
     mother_ = ''.join(number[mark+1:])
-    mother = float(mother_)
+    mother = int(mother_)
     son = float(son_)
     res  = son / mother 
     return res 
@@ -17,6 +17,14 @@ def factor(n) :
             res.append(each) 
     return res
 
+def to_find_mother(n) :
+    list_n = [ i for i in n ]
+    mark = list_n.index('/')
+    mother = ''.join(list_n[mark+1:])
+    res = int(mother)
+    return res
+    
+
 
 if __name__ == '__main__' :
     inputs = raw_input() 
@@ -24,8 +32,12 @@ if __name__ == '__main__' :
     former = change_to_decimal(inputs_list[0]) 
     later = change_to_decimal(inputs_list[1]) 
     mother = int(inputs_list[2])
-    res = []
-    max_n = int(mother*later)
+    res = [] 
+    denominator = to_find_mother(inputs_list[1])
+    if mother != denominator and mother != 1 :
+        max_n = int(mother*later)
+    else :
+        max_n = int(mother*later) -1 
     min_n = int(mother*former)
     
     for each in range(min_n+1,max_n+1) :
