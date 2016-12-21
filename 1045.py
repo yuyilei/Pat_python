@@ -17,18 +17,20 @@ if __name__ == '__main__' :
     while True :
         ob = real_inputs[i] 
         if ob == sort_inputs[i] :
-            number += 1 
-            output.append(ob) 
-            i += 1 
-            if i == n :
-                break 
+            i += 1
+            number += 1
+            output.append(ob)
+            if i > n - 1 :
+                break
         else :
-            i = sort_inputs.index(ob) 
-            if i == n -1 :
-                break 
+            i = sort_inputs.index(ob) + 1
+            if i> n - 1 :
+                break
     
 
-        
-    print number 
-    for i in output :
-        print i ,
+    if number == 0 :
+        print '0'
+    else :
+        print number 
+        for i in output :
+            print i ,
