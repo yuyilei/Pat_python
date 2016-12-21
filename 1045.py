@@ -29,6 +29,7 @@ if __name__ == '__main__' :
 
     if number == 0 :
         print '0'
+        print 
     else :
         print number 
         for i in output :
