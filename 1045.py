@@ -7,10 +7,8 @@ if __name__ == '__main__' :
     number = 0
     output = []
     i = 0 
-    real_inputs = []
-    
-    for each in _inputs :
-        real_inputs.append(int(each))
+
+    real_inputs = [ int(each) for each in _inputs ]
      
     sort_inputs = sorted(real_inputs)
 
