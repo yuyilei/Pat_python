@@ -20,12 +20,11 @@ if __name__ == '__main__' :
             i += 1
             number += 1
             output.append(ob)
-            if i > n - 1 :
-                break
+        
         else :
             i = sort_inputs.index(ob) + 1
-            if i> n - 1 :
-                break
+        if i> n - 1 :
+            break
     
 
     if number == 0 :
