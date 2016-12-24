@@ -35,13 +35,13 @@ if __name__ == '__main__' :
     res = [] 
     denominator = to_find_mother(inputs_list[1])
     if mother != denominator and mother != 1 :
-        max_n = int(mother*later)
+        max_n = max(int(mother*later) ,int(mother*former) )
     else :
-        max_n = int(mother*later) -1 
-    min_n = int(mother*former)
+        max_n = max(int(mother*later),int(mother*former)) -1 
+    min_n = min(int(mother*former),int(mother*later)) 
     
     for each in range(min_n+1,max_n+1) :
-        if mother != each :
+        if True :
             flag = 0 
             mother_factor = factor(mother) 
             each_factor = factor(each) 
