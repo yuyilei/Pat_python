@@ -6,7 +6,7 @@ def to_remove_brackets(s) :
     for i in s3 :
         try :
             if int(i) :
-                s3 = s3.replace(i,'') 
+                s3 = s3.replace(i,' ') 
         except :
             pass 
     return s3.split()
@@ -49,7 +49,7 @@ if __name__ == '__main__' :
             error = []
             max_error = errors 
             error.append(index+1) 
-        elif errors == max_error :
+        elif errors == max_error and errors != 0 :
             error.append(index+1)
 
     for each in scores :
@@ -57,8 +57,7 @@ if __name__ == '__main__' :
     if max_error == 0 :
         print 'Too simple'
     else :
-        for i in range(len(error)) :
-            error.insert(0,max_error) 
+        error.insert(0,max_error)
         for i in error :
             print i , 
 
