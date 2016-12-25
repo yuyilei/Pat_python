@@ -1,26 +1,24 @@
-from fractions import *
-def add_brackets(n) :
-    if '-' in n :
-        _res  = '(' + n + ')'
-    else :
-        _res = n 
-    return _res 
+from fractions import Fraction 
 
 def change(n) :
     fraction = Fraction(n) 
     numerator = abs(fraction.numerator) 
-    denominator =abs(fraction.denominator)
-    if numerator == 0:
-            res_ ='0'
-    else :
+    denominator = abs(fraction.denominator)
+    if numerator != 0 :
         if denominator == 1 :
             res = str(numerator) 
         elif numerator > denominator and denominator != 1 :
             a = numerator / denominator 
             b = numerator % denominator 
             res = str(a) +' ' + str(b)+'/'+str(denominator)
+        elif numerator < denominator  :
+            res = str(abs(fraction)) 
     if '-' in n and numerator != 0 :
-        res_ = '('+'-'+ res+ ')'
+        res_ = '('+'-'+res+ ')'
+    elif  numerator == 0 :
+        res_ = '0'
+    else :
+        res_ = res 
     return  res_  
 
 def add_2(a,b) :
@@ -34,7 +32,7 @@ def subtraction_2(a,b) :
     return res 
 
 def multi_2(a,b) :
-    res_ = Fraction(a) * Fraction(b) 
+    res_ = Fraction(a) * Fraction(b)
     res = change(str(res_))
     return res 
 
