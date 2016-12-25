@@ -16,7 +16,7 @@ def handle_answer(n) :
     number = n[:3] 
     real_number = [int(i) for i in number ]
     real_number.append(''.join(list_n[3:]))
-    return res_number
+    return real_number
     
 
 if __name__ == '__main__' :
@@ -34,9 +34,9 @@ if __name__ == '__main__' :
     for i in range(problem) :
         answer.append(handle_answer(raw_input().split()))
     for i in range(number) :
-        students.append(to_remove_brackets(raw_input())  
+        students.append(to_remove_brackets(raw_input()))  
     
-    for each in answer :
+    for each in answer:
         index = answer.index(each) 
         errors = 0 
         for each_st in students :
