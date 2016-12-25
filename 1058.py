@@ -1,24 +1,22 @@
 
-def to_remove_brackets(n) :
-    list_n = [ i for i in n ]
-    res = []
-    flag1 = []
-    flag2 = [] 
-    for i in range(len(n)) : 
-        if list_n[i] == '(' :
-            flag1.append(i) 
-        if list_n[i] == ')' :
-            flag2.append(i) 
-    for i , j in zip(flag1,flag2) :
-        res.append(''.join(list_n[i+2:j]))  
-    return res 
+def to_remove_brackets(s) :
+    s1  = ''.join(''.join(s.split('(')).split(')'))
+    s2 = s1.split()
+    s3 = ''.join(s2) 
+    for i in s3 :
+        try :
+            if int(i) :
+                s3 = s3.replace(i,'') 
+        except :
+            pass 
+    return s3.split()
 
 def handle_answer(n) :
     list_n = [ i for i in n ]
     number = n[:3] 
     real_number = [int(i) for i in number ]
-    res = real_number.append(''.join(list_n[3:]))
-    return res
+    real_number.append(''.join(list_n[3:]))
+    return res_number
     
 
 if __name__ == '__main__' :
@@ -30,15 +28,14 @@ if __name__ == '__main__' :
     answer = []
     students = []
     scores = [ 0 for i in range(number)] 
-    error = []
+    error = [] 
+    max_error = 0 
 
     for i in range(problem) :
         answer.append(handle_answer(raw_input().split()))
     for i in range(number) :
-        students.append(to_remove_brackets(raw_input().split())) 
-
-    max_error = 0
-
+        students.append(to_remove_brackets(raw_input())  
+    
     for each in answer :
         index = answer.index(each) 
         errors = 0 
@@ -48,16 +45,19 @@ if __name__ == '__main__' :
                 scores[index_st] += each[0] 
             else :
                 errors += 1
-        if errors >= max_error :
+        if errors > max_error :
+            error = []
             max_error = errors 
-            error.append(index) 
+            error.append(index+1) 
+        elif errors == max_error :
+            error.append(index+1)
 
     for each in scores :
         print each 
     if max_error == 0 :
         print 'Too simple'
     else :
-        for i in len(error) :
+        for i in range(len(error)) :
             error.insert(0,max_error) 
         for i in error :
             print i , 
