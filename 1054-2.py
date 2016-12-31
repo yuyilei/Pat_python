@@ -33,10 +33,10 @@ def tell_digit(n) :
             else :
                 return True 
         else :
-            if  -1 < abs(real_n) < 1 :
-                if  '-' in list_n and index_1 == 2 :
+            if  -1 < real_n < 1 :
+                if  '-' in list_n and  '.' in list_n[1:3] :
                     return True 
-                elif '-' not in list_n and index_1 == 1  :
+                elif '-' not in list_n and '.' in list_n[0:2] :
                     return True 
                 else :
                     return False
@@ -83,41 +83,53 @@ def tell_border(n) :
 def tell_minus(n) :
     if '-' in n :
         char = [i for i in n ]
-        if char.count('-') > 1 or char[0] != '-' :
+        if char.count('-') > 1 :
             return False
         else :
-            return True
+            if char[0] != '-' :
+                return False
+            else :
+                return True
     else :
         return True
 
 
 def tell_point(n) :
-     if '.' in n :
-         lens = len(n)
-         char = [ i for  i in n ]
-         if  char[lens - 1] == '.' :
-            return False
-         else :
-             if char.count('.') > 1 :
-                 return False 
-             else :
-                 if lens <= 2 :
-                     return False
-                 elif lens == 3 and char[1] != '.' and '-' not in char :
-                    return False
-                 elif lens == 3 and '-' in char :
-                    return False
-                 elif lens == 4 and '-' in char and char[2] != '.' :
-                    return False 
-                 elif lens == 4 and '-' not in char and '.' not in char[-3:-1] :
-                    return False
-                 elif lens > 4 and '.' not in char[-3:-1] :
-                    return False
-                 else :
+    if '.' in n :
+        lens = len(n)
+        char = [ i for  i in n ]
+        if char.count('.') >1 :
+            return False 
+        else :
+            index = char.index('.')
+            if lens == 1 :
+                return False
+            if lens == 2 and char[1] != '-' :
+                return True
+            if lens == 3 :
+                if '-' in char :
                     return True
+                else :
+                    if index == 0 :
+                        return False
+                    else :
+                        return True 
+            if lens == 4 :
+                if '-' in char :
+                    return True
+                else :
+                    if index == 0 :
+                        return False
+                    else :
+                        return True 
+            if lens >= 5 :
+                if '.' in char[-3:] :
+                    return True
+                else :
+                    return False
 
-     else :
-         return True 
+    else :
+        return True
             
 
 if __name__ == '__main__':
@@ -130,6 +142,10 @@ if __name__ == '__main__':
         if tell_char(n) == False :
             print ('ERROR: %s is not a legal number' % n )
         else :
+            if n == '-.' :
+                n = '0'
+            else :
+                pass
             if tell_minus(n) == False :
                 print ('ERROR: %s is not a legal number' % n )
             else :
