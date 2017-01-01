@@ -27,12 +27,13 @@ def to_find_hour(n,m) :
     return hour[key]
 
 import string 
-alphas = string.letters.lower() 
+alphas = string.letters
 
 def to_find_minute(n,m) :
-    for i , j in n ,m :
-        if i in alphas and j in alphas and i == j :
-            index = n.index(i)
+    lens = len(n)
+    for i in range(lens) : 
+        if n[i] == m[i] and n[i] in alphas :
+            index = i 
             break
     return index 
 
@@ -47,10 +48,10 @@ if __name__ == '__main__' :
     hour = to_find_hour(one,two)
     minute = str(to_find_minute(three,four))
     
-    if lens(minute) == 1 :
-        mintue = '0' + minute 
+    if len(minute) == 1 :
+        minute = '0' + minute 
 
-    res  = day + ':' + hour + ':' + minute
+    res  = day + ' ' + hour + ':' + minute
 
     print res 
 
