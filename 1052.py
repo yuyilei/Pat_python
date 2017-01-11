@@ -4,7 +4,7 @@ def remove(n) :
     a = [ i for i in n.split('[') ]
     b = ''.join(a)
     c = [ i for i in b.split(']')]
-    for index, i in enumerate(c) :
+    for  index, i in enumerate(c) :
         if i == '' or i == ' ' :
             del c[index]
         if ' ' in i:
