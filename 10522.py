@@ -14,16 +14,16 @@ def remove(n) :
 
 
 if __name__ == '__main__' :
-    hands = input()
-    eyes = input()
-    mouth = input() 
+    hands = raw_input()
+    eyes = raw_input()
+    mouth = raw_input() 
     real_hands = remove(hands)
     real_eyes = remove(eyes)
     real_mouth = remove(mouth)
     n =  int(input())
     real_res = [] 
     for i in range(n) :
-        number = input().split()
+        number = raw_input().split()
         real_n = [ int(i) for i in number ]
         try :
             output = \
