@@ -1,12 +1,5 @@
 
 
-def cheak(n) :
-    number = min(n.count("["),n.count("]"))
-    res = []
-    i = 0 
-    while number > 0 :
-        if n[i] == "[" :
-
 
 def remove(n) :
     a = [ i for i in n.split('[') ]
