@@ -15,35 +15,65 @@ def tell_insertion(n,a,b) :
     else :
         return False ,  0 
 
-def merge(n,a,b) :
+def Merge(b,low,mid,high) :
+    a = [int(i) for i in b]
+    i = low 
+    j = mid
+    t = []
+    while(i < mid and j < high) :
+        if a[i] <= a[j] :
+            t.append(a[i])
+            i = i + 1 
+        else :
+            t.append(a[j])
+            j = j + 1 
+    return t 
+
+def merge(N,a,b) :
     real = [int(i) for i in a ]
     relative = [int(i) for i in b ]
-    for i in range(0,n) :
-        if relative[i] <= relative[i+1] :
-            pass
-        else :
-            relative[i+1],relative[i] = relative[i],relative[i+1]
+    k = 1 
+    i = 0 
+    c = real
+    isMerge = False
+
+    while True :
+        if k >= N :
             break 
-    return relative 
+        while True :
+            if i >= N :
+                break 
+            if i + k*2 <= N :
+                c = Merge(c,i,i+k,i+2*k) 
+            elif i + k <= N :
+                c = Merge(c,i,i+k,N)
+            i = i + k * 2
+
+        if ( isMerge ) :
+            print "Merge Sort"
+            print c 
+        elif (c == relative) :
+            isMerge = True
+            
+        k = k * 2
+
+    
+
 
 if __name__ == '__main__' :
-    n = input()
+    N = input()
     real_ = raw_input()
     relative_ = raw_input()
     real = real_.split()
     relative = relative_.split()
-    a,b = tell_insertion(n,real,relative)
+    a,b = tell_insertion(N,real,relative)
     if a == True :
         output = sorted(real[:b+1]) + real[b+1:]
         print 'Insertion Sort'
         for each in output :
             print each ,
     else : 
-        print 'Merge Sort'
-        output = merge(n,real,relative)  
-        for each in output :
-            print each ,
-
+        merge(N,real,relative) 
 
 
         
