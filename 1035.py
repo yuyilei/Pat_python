@@ -27,6 +27,12 @@ def Merge(b,low,mid,high) :
         else :
             t.append(a[j])
             j = j + 1 
+    if  i < mid :
+        t = t + a[i+1:mid]
+
+    if  j < high :
+        t = t + a[j+1:high]
+
     return t 
 
 def merge(N,a,b) :
