@@ -15,55 +15,40 @@ def tell_insertion(n,a,b) :
     else :
         return False ,  0 
 
-def Merge(b,low,mid,high) :
-    a = [int(i) for i in b]
-    i = low 
-    j = mid
-    t = []
-    while(i < mid and j < high) :
-        if a[i] <= a[j] :
-            t.append(a[i])
-            i = i + 1 
-        else :
-            t.append(a[j])
+def merge(real,left,middle,right) : 
+    i = left 
+    j = middle + 1 
+    res = [ i for i in real ] 
+    for s  in range(left,right+1) :
+        if i > middle :
+            res[s] = real[j] 
             j = j + 1 
-    if  i < mid :
-        t = t + a[i+1:mid]
+        elif j > right : 
+            res[s] = real[i]
+            i = i + 1
+        elif real[i] < real[j] :
+            res[s] = real[i]
+            i = i + 1
+        else :
+            res[s] = real[j]
+            j = j + 1
 
-    if  j < high :
-        t = t + a[j+1:high]
+    return res 
 
-    return t 
 
-def merge(N,a,b) :
-    real = [int(i) for i in a ]
-    relative = [int(i) for i in b ]
-    k = 1 
-    i = 0 
-    c = real
-    isMerge = False
-
-    while True :
-        if k >= N :
-            break 
-        while True :
-            if i >= N :
-                break 
-            if i + k*2 <= N :
-                c = Merge(c,i,i+k,i+2*k) 
-            elif i + k <= N :
-                c = Merge(c,i,i+k,N)
-            i = i + k * 2
-
-        if ( isMerge ) :
-            print "Merge Sort"
-            print c 
-        elif (c == relative) :
-            isMerge = True
-            
-        k = k * 2
-
+def merge_sort(real,n):
+    l = len(real) 
+    i = 0
+    res = [i for i in real ]
     
+    while True : 
+        right = min(i+2*n-1,l-1) 
+        res = merge(res,i,i+n-1,right) 
+        if (i >= l-n):
+            break 
+        else :
+            i=i+2*n 
+    return res , 2*n
 
 
 if __name__ == '__main__' :
@@ -78,8 +63,19 @@ if __name__ == '__main__' :
         print 'Insertion Sort'
         for each in output :
             print each ,
-    else : 
-        merge(N,real,relative) 
+
+    else :
+        n = 1
+        c = [int(i) for i in real ]
+        d = [int(i) for i in relative ]
+        while True :
+          c , n = merge_sort(c ,n ) 
+          if c == d :
+              output , n= merge_sort(c,n) 
+              break
+        print 'Merge Sort'
+        for each in output :
+            print each , 
 
 
         
