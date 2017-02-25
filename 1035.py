@@ -1,5 +1,6 @@
 
 def tell_insertion(n,a,b) :
+
     real = [int(i) for i in a ]
     relative = [int(i) for  i in b ]
     flag = 0 
