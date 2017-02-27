@@ -20,36 +20,53 @@ def merge(real,left,middle,right) :
     i = left 
     j = middle + 1 
     res = [ i for i in real ] 
-    for s  in range(left,right+1) :
-        if i > middle :
+    s = left 
+
+    while True :
+        if s > right  :
+            break 
+        elif i > middle :  
             res[s] = real[j] 
             j = j + 1 
-        elif j > right : 
+        elif j > right :
             res[s] = real[i]
-            i = i + 1
+            i = i + 1 
         elif real[i] < real[j] :
             res[s] = real[i]
             i = i + 1
         else :
             res[s] = real[j]
             j = j + 1
+        s = s + 1 
 
     return res 
 
 
-def merge_sort(real,n):
+def merge_sort(real,relative):
     l = len(real) 
     i = 0
-    res = [i for i in real ]
-    
-    while True : 
-        right = min(i+2*n-1,l-1) 
-        res = merge(res,i,i+n-1,right) 
-        if (i >= l-n):
+    n = 1 
+    flag = 0 
+
+    res = [i for i in real]
+    while True :
+        i = 0 
+        while True : 
+            right = min(i+2*n-1,l-1) 
+            res = merge(res,i,i+n-1,right) 
+            if (i >= l-n) :
+                break 
+            else :
+                i=i+2*n 
+        if res == relative :
+            flag = 1 
+            n = 2 * n 
+        elif flag == 1 :
             break 
         else :
-            i=i+2*n 
-    return res , 2*n
+            n = 2 * n
+
+    return res 
 
 
 if __name__ == '__main__' :
@@ -66,15 +83,10 @@ if __name__ == '__main__' :
             print each ,
 
     else :
-        n = 1
         c = [int(i) for i in real ]
         d = [int(i) for i in relative ]
-        while True :
-          c , n = merge_sort(c ,n ) 
-          if c == d :
-              output , n= merge_sort(c,n) 
-              break
         print 'Merge Sort'
+        output = merge_sort(c,d)
         for each in output :
             print each , 
 
